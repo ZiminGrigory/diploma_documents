@@ -1,0 +1,328 @@
+%% Простая презентация с примером включения программного кода и
+%% пошаговых спецэффектов
+\documentclass{beamer}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{xecyr}
+\usepackage{hyperref}
+\setmainfont[Mapping=tex-text]{DejaVu Serif}
+\setsansfont[Mapping=tex-text]{DejaVu Sans}
+\setmonofont[Mapping=tex-text]{DejaVu Sans Mono}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setbeamertemplate{footline}[page number]{}
+\setbeamertemplate{navigation symbols}{}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{caption}
+
+\begin{document}
+\title{Создание языка программирования роботов в терминах потоков данных с применением DSM-подхода}
+\author{Григорий Александрович Зимин\\{\footnotesize{Научный руководитель: д. ф.-м. н., профессор А.Н. Терехов \\Рецензент:?
+}}}
+\institute{Санкт-Петербургский государственный университет\\Математико-механический факультет\\Кафедра Системного программирования}
+\date{Санкт-Петербург, \today}
+\frame{\titlepage}
+
+\begin{frame}\frametitle{Модели исполнения}
+\begin{columns}[T]
+     \begin{column}[T]{5cm} 
+     		\begin{figure}[p]
+    			\centering
+          		\includegraphics[scale = 0.3]{cf.png}
+    			\caption*{Поток управления}
+    			\label{fig:cf}
+			\end{figure}
+     \end{column}
+     \begin{column}[T]{5cm} 
+     		\begin{figure}[p]
+  				\begin{center}
+          		\includegraphics[scale = 0.2]{df.png}
+          		\end{center}
+          		\caption*{Поток данных}
+    			\label{fig:df}
+			\end{figure}
+     \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}\frametitle{Управление роботом}
+	\includegraphics[scale = 0.65]{robotControl.png}
+\end{frame}
+	
+\begin{frame}\frametitle{Модели декомпозиции управления роботом}
+	\begin{columns}[T]
+     \begin{column}[T]{6cm} 
+     		\begin{figure}[p]
+    			\centering
+          		\includegraphics[scale = 0.3]{commonModel.png}
+    			\caption*{Модель до Р. Брукса}
+    			\label{fig:cf}
+			\end{figure}
+     \end{column}
+     \begin{column}[T]{6cm} 
+     		\begin{figure}[p]
+  				\begin{center}
+          		\includegraphics[scale = 0.3]{brooksModel.png}
+          		\end{center}
+          		\caption*{Модель Р. Брукса}
+    			\label{fig:df}
+			\end{figure}
+     \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}\frametitle{Архитектура системы управления роботом}
+     		\begin{figure}[p]
+				\includegraphics[scale = 0.25]{brooksArchitecture.png}
+          		\caption*{Архитектура Р. Брукса\footnote{Изображение взято из статьи автора.}}
+			\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Исследования в области}
+\begin{itemize}
+    \item Proetzsch Martin, Luksch Tobias, Berns Karsten. The behaviour-based control architecture iB2C for complex robotic systems. 2007  
+    \item Jonathan Simpson, Christian L. Jacobsen. Visual Process-oriented Programming for Robotics. 2008
+    \item Diprose James P, MacDonald Bruce A, Hosking John G. Ruru: A spatial and interactive visual programming language for novice robot programming. 2011
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Среды программирования роботов}
+\begin{itemize}
+	\item Основаны на модели потока данных
+	\begin{itemize}
+    	\item Microsoft Robotics Developer Studio (Microsoft)
+    	\item LabVIEW (National Instruments)
+    	\item Simulink (MAthWorks)
+	\end{itemize}
+	\item Основаны на модели потока управления
+	\begin{itemize}
+    	\item NXT-G (LEGO)
+    	\item ROBOLAB (LEGO)
+    	\item TRIK Studio (СПбГУ)
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Постановка задачи}
+\begin{itemize}
+    \item Создать новый визуальный язык программирования в терминах потоков данных для программирования роботов
+    \begin{itemize}
+        \item TRIK
+        \item NXT
+        \item EV3
+    \end{itemize}
+    \item Интерпретировать программы, написанные на новом языке
+    \begin{itemize}
+        \item Двумерная модель
+        \item Реальный робот
+    \end{itemize}
+    \item Апробировать на типовых системах управления
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Язык}
+\only<1>{  
+  \begin{figure}
+    \includegraphics[scale = 0.6]{langElments}
+    \caption*{Элементы языка: связь, блок.}
+  \end{figure}
+}
+
+\only<2>{
+	{\bf Блоки \textit{действий} с роботом}
+ \begin{columns}[T] 
+	
+	
+	\begin{column}[T]{3cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.6]{motors}
+   			\caption*{\scriptsize\textit{Моторы}} 
+ 		\end{figure}
+     \end{column}
+     
+     \begin{column}[T]{3cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.6]{sensor}
+   			\caption*{\scriptsize\textit{Сенсор}} 
+ 		\end{figure}
+     \end{column}  
+        
+     \begin{column}[T]{3cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.6]{gamepad}
+   			\caption*{\scriptsize\textit{Геймпад}} 
+ 		\end{figure}
+     \end{column}
+  \end{columns}
+}
+
+\only<3>{
+	{\bf Блоки \textit{манипулирования потоками}}
+ \begin{columns}[T] 
+	
+	\begin{column}[T]{2cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.6]{zip}
+   			\caption*{\scriptsize\textit{Запаковка}} 
+ 		\end{figure}
+     \end{column}
+     
+     \begin{column}[T]{2cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.6]{unzip}
+   			\caption*{\scriptsize\textit{Распаковка}} 
+ 		\end{figure}
+     \end{column}  
+        
+     \begin{column}[T]{3cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.6]{supress}
+   			\caption*{\scriptsize\textit{Подавление и замещение}} 
+ 		\end{figure}
+     \end{column}
+  \end{columns}
+}
+
+\only<4>{
+ {\bf \textit{Управляющие} блоки}
+ \begin{columns}[T] 
+	
+	 \begin{column}[T]{3cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.6]{fork}
+   			\caption*{\scriptsize\textit{Распараллеливание}} 
+ 		\end{figure}
+     \end{column}  
+     
+	\begin{column}[T]{3cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.6]{subprog}
+   			\caption*{\scriptsize\textit{Пользовательский блок}} 
+ 		\end{figure}
+     \end{column}
+        
+     \begin{column}[T]{3cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.6]{outport}
+   			\caption*{\scriptsize\textit{Выходной порт}} 
+ 		\end{figure}
+     \end{column}
+  \end{columns}
+}
+
+\only<5>{
+	{\bf \textit{Управляющие} блоки}  
+  \begin{columns}[T] 
+	\begin{column}[T]{2cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.4]{setx}
+   			\caption*{\scriptsize\textit{Глобальная переменная}} 
+ 		\end{figure}
+     \end{column}
+     
+     \begin{column}[T]{2cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.4]{exit}
+   			\caption*{\scriptsize\textit{Завершение исполнения}} 
+ 		\end{figure}
+     \end{column}  
+  \end{columns}
+  
+ \begin{columns}[T] 	
+	\begin{column}[T]{2cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.4]{delayFilter}
+   			\caption*{\scriptsize\textit{Фильтр}} 
+ 		\end{figure}
+     \end{column}
+     
+     \begin{column}[T]{2cm} 
+  		\begin{figure}
+    		\includegraphics[scale = 0.35]{func}
+   			\caption*{\scriptsize\textit{Текстовое программирование}} 
+ 		\end{figure}
+     \end{column}  
+  \end{columns}
+
+}
+\end{frame}
+
+
+\begin{frame}\frametitle{Реализация}
+ \begin{columns}[T]
+     \begin{column}[T]{5cm} 
+     	\begin{itemize}
+			\item Редактор диаграмм
+    		\item Интерпретатор диаграмм в терминах потоков данных
+		\end{itemize}
+     \end{column}
+     \begin{column}[T]{5cm} 
+          \includegraphics[height=5cm]{Common.png}
+     \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}\frametitle{Апробация: ПД-регулятор для движения вдоль стены}\framesubtitle{Система управления}
+\begin{columns}[T]
+     \begin{column}[T]{5cm} 
+     		\begin{figure}[p]
+    			\centering
+          		\includegraphics[scale = 0.34]{alongCF.png}
+    			\caption*{Поток управления}
+    			\label{fig:cf}
+			\end{figure}
+     \end{column}
+     \begin{column}[T]{5cm} 
+     		\begin{figure}[p]
+  				\begin{center}
+          		\includegraphics[scale = 0.2]{alongBoxCode.png}
+          		\end{center}
+          		\caption*{Поток данных}
+    			\label{fig:df}
+			\end{figure}
+     \end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}\frametitle{Апробация: ПД-регулятор для движения вдоль стены}\framesubtitle{Интерпретация на модели}
+	\includegraphics[scale = 0.22]{working.png}
+\end{frame}
+
+
+\begin{frame}\frametitle{Апробация: ПД-регулятор для движения вдоль стены}\framesubtitle{Интерпретация на роботе}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Апробация: двухуровневая система управления роботом}\framesubtitle{Операторский контроль}
+	\includegraphics[scale = 0.4]{pult.png}
+\end{frame}
+
+
+\begin{frame}\frametitle{Апробация: двухуровневая система управления роботом}\framesubtitle{Избегание столкновений}
+\includegraphics[scale = 0.4]{collision.png}
+\end{frame}
+
+
+\begin{frame}\frametitle{Апробация: двухуровневая система управления роботом}\framesubtitle{Управление на основе архитектуры категорий}
+	\includegraphics[scale = 0.4]{programScreen.png}
+\end{frame}
+
+
+\begin{frame}\frametitle{Результаты}
+\begin{itemize}
+	\item Создан новый визуальный язык программирования в терминах потоков данных для программирования роботов и редактор для него
+    \item Для интерпретации программ на новом языке на двумерной модели и на реальном роботе создан интерпретатор потоковых языков
+    \item Произведена апробация на типовых задачах управления роботом
+    \item Написаны две публикации на тематические конференции (SEIM-2016, SYRCoSE-2016) 
+\end{itemize}
+\end{frame}
+\end{document}
