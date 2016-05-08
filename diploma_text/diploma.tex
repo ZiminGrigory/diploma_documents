@@ -74,17 +74,6 @@
 \section*{Постановка задачи}
 	Задачей данной выпускной квалификационной работы стало создание языка программирования роботов в терминах потоков данных для учебных робототехнических конструкторов, таких как TRIK, NXT, EV3. Язык должен быть достаточно простым в освоении, но в то же время обладать достаточными функциональными возможностями, чтобы создавать сложные системы управления, управляющие различными аспектами поведения робота. По сути, он должен сочетать в себе простоту учебных языков и хотя бы частично обладать возможностями языков, используемых в индустрии. Для использования языка необходимо создать инструментарий для его поддержки, а именно редактор визуального языка и интерпретатор программ, созданных в терминах потоков данных на новом языке. Интерпретация должна осуществляться на симуляционной модели, а также непосредственно на реальном роботе. Третьей задачей данной квалификационной работы является апробация нового языка и инструментария, созданного для него, для программирования типичных учебных задач в робототехнике, а также для более сложных систем управления роботом.
 
-
-\section{Обзор}
-\label{sec:overview}
- Визуальные языки в терминах потоков данных не новы. Можно рассмотреть, к примеру:
- \begin{itemize}    
-  \item Систему разработки виртуальных приборов LabView~\cite{travis2007labview}
-  \item Визульный событийно ориентированный язык программирования~\cite{simpson2008visual}
-  \item Диссертация "Система для визуального программирования автономных роботов"~\cite{banyasad2000visual}
- \end{itemize}
- 
- 
  
 \section{Обзор сред и языков программирования роботов}
 \label{sec:overview1}
@@ -126,9 +115,9 @@
 
 \begin{figure}
     \centering
-    \begin{subfigure}{0.16\textwidth}
+    \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{const}
-        \caption{exit}
+        \caption{Генератор данных}
         \label{fig:link}
     \end{subfigure}
     \hfill
@@ -136,70 +125,277 @@
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{exit}
-        \caption{Блок}
+        \caption{Завершение исполнения}
         \label{fig:block}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{var}
-        \caption{Блок}
+        \caption{Глобальная переменная}
         \label{fig:block}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{fork}
-        \caption{exit}
+        \caption{Распараллеливание}
         \label{fig:link}
     \end{subfigure}
     
     \begin{subfigure}{0.25\textwidth}
         \includegraphics[width=\textwidth]{if}
-        \caption{Блок}
+        \caption{Условие}
         \label{fig:block}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.4\textwidth}
         \includegraphics[width=\textwidth]{filter}
-        \caption{Блок}
+        \caption{Фильтр}
         \label{fig:block}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{loop}
-        \caption{Блок}
+        \caption{Цикл}
         \label{fig:block}
     \end{subfigure}    
     
     \begin{subfigure}{0.15\textwidth}
         \includegraphics[width=\textwidth]{random}
-        \caption{exit}
+        \caption{Случайное число}
         \label{fig:link}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{subPr}
-        \caption{Блок}
+        \caption{Пользовательский блок}
         \label{fig:block}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{waitFor}
-        \caption{Блок}
+        \caption{Задержка}
         \label{fig:block}
     \end{subfigure}
     
     \begin{subfigure}{0.38\textwidth}
         \includegraphics[width=\textwidth]{switch}
-        \caption{Блок}
+        \caption{Множественный выбор}
         \label{fig:block}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.36\textwidth}
         \includegraphics[width=\textwidth]{func}
-        \caption{Блок}
+        \caption{Текстовое программирование}
         \label{fig:block}
     \end{subfigure}
     \caption{Группа блоков управления}\label{fig:controlBlocks}
+\end{figure}
+
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{smile}
+        \caption{Смайл}
+        \label{fig:smile}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\textwidth]{shape}
+        \caption{Фигура}
+        \label{fig:shape}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{settings}
+        \caption{Настройка окружения}
+        \label{fig:settings}
+    \end{subfigure}
+    
+    
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{clear}
+        \caption{Очистка экрана}
+        \label{fig:clear}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\textwidth]{text}
+        \caption{Текст}
+        \label{fig:text}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\textwidth]{penUp}
+        \caption{Рисование маркером}
+        \label{fig:penUp}
+    \end{subfigure}    
+    
+    
+    \caption{Группа блоков рисования на экране}\label{fig:paintBlocks}
+\end{figure}
+
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{zip}
+        \caption{Упаковка}
+        \label{fig:zip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.19\textwidth}
+        \includegraphics[width=\textwidth]{unzip}
+        \caption{Распаковка}
+        \label{fig:unzip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.25\textwidth}
+        \includegraphics[width=\textwidth]{inhib}
+        \caption{Приостановка}
+        \label{fig:inhib}
+    \end{subfigure}
+    
+    
+    \begin{subfigure}{0.18\textwidth}
+        \includegraphics[width=\textwidth]{input}
+        \caption{Входной порт}
+        \label{fig:clear}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.19\textwidth}
+        \includegraphics[width=\textwidth]{output}
+        \caption{Выходной порт}
+        \label{fig:text}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.33\textwidth}
+        \includegraphics[width=\textwidth]{supress}
+        \caption{Подавление и замещение}
+        \label{fig:penUp}
+    \end{subfigure}    
+    
+    
+    \caption{Группа блоков управления потоками}\label{fig:flowBlocks}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.16\textwidth}
+        \includegraphics[width=\textwidth]{portIN}
+        \caption{Упаковка}
+        \label{fig:zip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.16\textwidth}
+        \includegraphics[width=\textwidth]{portOUT}
+        \caption{Распаковка}
+        \label{fig:unzip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.16\textwidth}
+        \includegraphics[width=\textwidth]{sensor}
+        \caption{Приостановка}
+        \label{fig:inhib}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.16\textwidth}
+        \includegraphics[width=\textwidth]{music}
+        \caption{Приостановка}
+        \label{fig:inhib}
+    \end{subfigure}
+    
+    
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{motors}
+        \caption{Упаковка}
+        \label{fig:zip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{encoders}
+        \caption{Распаковка}
+        \label{fig:unzip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{servo}
+        \caption{Приостановка}
+        \label{fig:inhib}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.16\textwidth}
+        \includegraphics[width=\textwidth]{initCamera}
+        \caption{Приостановка}
+        \label{fig:inhib}
+    \end{subfigure}
+    
+    
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{led}
+        \caption{Упаковка}
+        \label{fig:zip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{talk}
+        \caption{Распаковка}
+        \label{fig:unzip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.16\textwidth}
+        \includegraphics[width=\textwidth]{stream}
+        \caption{Приостановка}
+        \label{fig:inhib}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{objectDetector}
+        \caption{Приостановка}
+        \label{fig:inhib}
+    \end{subfigure}
+    
+    
+    \begin{subfigure}{0.2\textwidth}
+        \includegraphics[width=\textwidth]{writeToF}
+        \caption{Упаковка}
+        \label{fig:zip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.18\textwidth}
+        \includegraphics[width=\textwidth]{deleteFile}
+        \caption{Распаковка}
+        \label{fig:unzip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.27\textwidth}
+        \includegraphics[width=\textwidth]{msgToRb}
+        \caption{Приостановка}
+        \label{fig:inhib}
+    \end{subfigure}
+    
+    
+    \begin{subfigure}{0.18\textwidth}
+        \includegraphics[width=\textwidth]{newMsg}
+        \caption{Приостановка}
+        \label{fig:inhib}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.3\textwidth}
+        \includegraphics[width=\textwidth]{systemCall}
+        \caption{Упаковка}
+        \label{fig:zip}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.25\textwidth}
+        \includegraphics[width=\textwidth]{gamepad}
+        \caption{Распаковка}
+        \label{fig:unzip}
+    \end{subfigure}
+    
+    \caption{Группа блоков управления потоками}\label{fig:flowBlocks}
 \end{figure}
 
 
