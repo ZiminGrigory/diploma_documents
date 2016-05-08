@@ -88,7 +88,7 @@
 
 Задача, решенная в рамках данной работы, была поделена на 2 части: спецификация нового языка и создание средств его инструментарной поддержки. 
 
-\subsection{Описание языка} 
+\subsection{Специализация языка} 
 Был создан графовый язык, вершинами которого являются сущности-блоки, которые представляют собой черные ящики, которые принимают и генерируют данные (см. Рис. ~\ref{fig:block}), и связи, связывающие их представляют поток данных между ними, поток однонаправленный (см. Рис. ~\ref{fig:link}). 
 
   
@@ -111,14 +111,26 @@
 
 На блоках слева и снизу могут быть входные порты для данных. Справа выходные порты. Сверху могут быть отдельные порты для передачи <<пустых>> данных, <<своеобразный>> аналог контроля управления, например см. Рис.~\ref{fig:link}. Также в блоке может быть одно или несколько текстовых полей, в которых пользователь может писать выражения на статически типизированном диалекте Lua~\cite{Lua}, чья поддержка была также унаследована от среды TRIK Studio. Порты блоков подписываются. 
 
-Ниже представлены все блоки используемые в языке, они разделены на несколько групп. А также дано краткое описание работы каждого блока.
+Ниже представлены все блоки используемые в языке, они разделены на несколько групп. А также дано описание работы каждого блока.
+
+\subsubsection{Блоки управления}
+
+% Блок <<>> (см. Рис.~\ref{fig:})
+Блоки <<управления>> (см. Рис.~\ref{fig:controlBlocks}) реализуют некоторые базовые алгоритмические конструкции и полезные алгоритмические функции.
+К примеру, блок <<Генератор данных>> (см. Рис.~\ref{fig:const})  при приходе на него любых данных генерирует значение, установленное пользователем.
+Блок <<Завершение исполнения>> (см. Рис.~\ref{fig:exit}) останавливает выполнение программы в каком бы состоянии не находился робот. Блок <<Глобальная переменная>> (см. Рис.~\ref{fig:var}) позволяет пользователю устанавливать глобальные переменные. Его поведение разнится в зависимости от того на какой порт пришли данные и от того, что ввел пользователь в текстовое поле: если в текстовом поле указана переменная, и она была до этого определена, то при приходе любых данных на верхний левый порт блок вырабатывает значение этой переменной на выходной правый порт, при приходе данных на входной порт слева, переменная инициализируется этими данными и блок генерирует значение переменной на выходной правый порт. В текстовом поле переменная может быть сразу проинициализирована: $x = 10$; тогда при приходе данных на верхний входной порт генерируется это значение. Исходящая связь из блока, начинающаяся в верхнем выходном порте, передает пустые данные одновременно с тем, как блок генерирует данные на выходной правый порт.
+Блок <<Распараллеливание>> (см. Рис.~\ref{fig:fork}) нужен для явного запуска связанных с ним (его исходящими связями) блоков в новых потоках исполнения (мотивация добавления этого блока в язык потоков данных будет объяснена в следующей подглаве).
+Блок <<Условие>> (см. Рис.~\ref{fig:if}) --- это имплементация условной развилки, если условие на данные, введенное пользователем в текстовом поле с возможным использованием значений переменных пришедших на нижний входной порт, истинно, то данные будут отправлены на выходной порт $TRUE$, иначе на порт $FALSE$. Не обязательно, чтобы все выходные порты были концами исходящих связей, равно как и концами входящих, например, если условие не использует $vars[i]$ то нижний порт не обязательно должен быть соединен входящей связью. Блок <<Задержка>> (см. Рис.~\ref{fig:waitFor}) позволяет пропускать данные с заданной периодичностью, и, в зависимости от настроек пользователя, либо выстраивать приходящие данные в очередь по времени, либо терять приходящие данные между отправками. Пользователь может задать время задержки в текстовом поле. Время также может быть обновлено данными приходящими на соответствующий порт, и задержка будет высчитываться по новому времени. Блок задерживает любые данные (также пустые, приходящие на верхний порт). 
+Блок <<Фильтр>> (см. Рис.~\ref{fig:filter}) --- объединение предыдущих двух с добавлением счетчика <<успешных срабатываний>>. Если значение счетчика указано как $-1$, то он игнорируется. В противном случае, когда счетчик обнулится, то, даже при истинности проверяемого условия, данные будут отправлены в порт $failure\ out$.
+
+
 
 \begin{figure}
     \centering
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{const}
         \caption{Генератор данных}
-        \label{fig:link}
+        \label{fig:const}
     \end{subfigure}
     \hfill
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
@@ -126,72 +138,72 @@
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{exit}
         \caption{Завершение исполнения}
-        \label{fig:block}
+        \label{fig:exit}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{var}
         \caption{Глобальная переменная}
-        \label{fig:block}
+        \label{fig:var}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{fork}
         \caption{Распараллеливание}
-        \label{fig:link}
+        \label{fig:fork}
     \end{subfigure}
     
     \begin{subfigure}{0.25\textwidth}
         \includegraphics[width=\textwidth]{if}
         \caption{Условие}
-        \label{fig:block}
+        \label{fig:if}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.4\textwidth}
         \includegraphics[width=\textwidth]{filter}
         \caption{Фильтр}
-        \label{fig:block}
+        \label{fig:filter}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{loop}
         \caption{Цикл}
-        \label{fig:block}
+        \label{fig:loop}
     \end{subfigure}    
     
     \begin{subfigure}{0.15\textwidth}
         \includegraphics[width=\textwidth]{random}
         \caption{Случайное число}
-        \label{fig:link}
+        \label{fig:random}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{subPr}
         \caption{Пользовательский блок}
-        \label{fig:block}
+        \label{fig:subPr}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{waitFor}
         \caption{Задержка}
-        \label{fig:block}
+        \label{fig:waitFor}
     \end{subfigure}
     
     \begin{subfigure}{0.38\textwidth}
         \includegraphics[width=\textwidth]{switch}
         \caption{Множественный выбор}
-        \label{fig:block}
+        \label{fig:switch}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.36\textwidth}
         \includegraphics[width=\textwidth]{func}
         \caption{Текстовое программирование}
-        \label{fig:block}
+        \label{fig:func}
     \end{subfigure}
     \caption{Группа блоков управления}\label{fig:controlBlocks}
 \end{figure}
 
-
+\subsubsection{Блоки рисования на экране}
 
 \begin{figure}
     \centering
@@ -237,6 +249,7 @@
 \end{figure}
 
 
+\subsubsection{Блоки управления потоками}
 
 \begin{figure}
     \centering
@@ -262,140 +275,143 @@
     \begin{subfigure}{0.18\textwidth}
         \includegraphics[width=\textwidth]{input}
         \caption{Входной порт}
-        \label{fig:clear}
+        \label{fig:input}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.19\textwidth}
         \includegraphics[width=\textwidth]{output}
         \caption{Выходной порт}
-        \label{fig:text}
+        \label{fig:output}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.33\textwidth}
         \includegraphics[width=\textwidth]{supress}
         \caption{Подавление и замещение}
-        \label{fig:penUp}
+        \label{fig:supress}
     \end{subfigure}    
     
     
     \caption{Группа блоков управления потоками}\label{fig:flowBlocks}
 \end{figure}
 
+
+\subsubsection{Блоки взаимодействия}
+
 \begin{figure}
     \centering
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{portIN}
-        \caption{Упаковка}
-        \label{fig:zip}
+        \caption{Запись в порт}
+        \label{fig:portIN}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{portOUT}
-        \caption{Распаковка}
-        \label{fig:unzip}
+        \caption{Чтение с порта}
+        \label{fig:portOUT}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{sensor}
-        \caption{Приостановка}
-        \label{fig:inhib}
+        \caption{Сенсор}
+        \label{fig:sensor}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{music}
-        \caption{Приостановка}
-        \label{fig:inhib}
+        \caption{Проиграть музыку}
+        \label{fig:music}
     \end{subfigure}
     
     
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{motors}
-        \caption{Упаковка}
-        \label{fig:zip}
+        \caption{Силовые моторы}
+        \label{fig:motors}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{encoders}
-        \caption{Распаковка}
-        \label{fig:unzip}
+        \caption{Энкодеры}
+        \label{fig:encoders}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{servo}
-        \caption{Приостановка}
-        \label{fig:inhib}
+        \caption{Сервомоторы}
+        \label{fig:servo}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{initCamera}
-        \caption{Приостановка}
-        \label{fig:inhib}
+        \caption{Инициализация камеры}
+        \label{fig:initCamera}
     \end{subfigure}
     
     
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{led}
-        \caption{Упаковка}
-        \label{fig:zip}
+        \caption{Диод}
+        \label{fig:led}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{talk}
-        \caption{Распаковка}
-        \label{fig:unzip}
+        \caption{Генерация речи}
+        \label{fig:talk}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.16\textwidth}
         \includegraphics[width=\textwidth]{stream}
-        \caption{Приостановка}
-        \label{fig:inhib}
+        \caption{Трансляция}
+        \label{fig:stream}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{objectDetector}
-        \caption{Приостановка}
-        \label{fig:inhib}
+        \caption{Детектор объектов}
+        \label{fig:objectDetector}
     \end{subfigure}
     
     
     \begin{subfigure}{0.2\textwidth}
         \includegraphics[width=\textwidth]{writeToF}
-        \caption{Упаковка}
-        \label{fig:zip}
+        \caption{Запись в файл}
+        \label{fig:writeToF}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.18\textwidth}
         \includegraphics[width=\textwidth]{deleteFile}
-        \caption{Распаковка}
-        \label{fig:unzip}
+        \caption{Удаление файла}
+        \label{fig:deleteFile}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.27\textwidth}
         \includegraphics[width=\textwidth]{msgToRb}
-        \caption{Приостановка}
-        \label{fig:inhib}
+        \caption{Сообщение роботу}
+        \label{fig:msgToRb}
     \end{subfigure}
     
     
     \begin{subfigure}{0.18\textwidth}
         \includegraphics[width=\textwidth]{newMsg}
-        \caption{Приостановка}
-        \label{fig:inhib}
+        \caption{Сообщение от робота}
+        \label{fig:newMsg}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.3\textwidth}
         \includegraphics[width=\textwidth]{systemCall}
-        \caption{Упаковка}
-        \label{fig:zip}
+        \caption{Исполнение команды}
+        \label{fig:systemCall}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.25\textwidth}
         \includegraphics[width=\textwidth]{gamepad}
-        \caption{Распаковка}
-        \label{fig:unzip}
+        \caption{Операторский контроль}
+        \label{fig:gamepad}
     \end{subfigure}
     
-    \caption{Группа блоков управления потоками}\label{fig:flowBlocks}
+    \caption{Группа блоков взаимодействия}\label{fig:flowBlocks}
 \end{figure}
 
 
