@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: diploma.aux
+The style file: utf8gost705u.bst
+Database file #1: diploma.bib.bib
+Warning--entry type for "trik" isn't style-file defined
+--line 18 of file diploma.bib.bib
+Warning--entry type for "metaEdit" isn't style-file defined
+--line 92 of file diploma.bib.bib
+Warning--entry type for "nxt-g" isn't style-file defined
+--line 101 of file diploma.bib.bib
+Warning--entry type for "robolab" isn't style-file defined
+--line 110 of file diploma.bib.bib
+Warning--entry type for "MVSTools" isn't style-file defined
+--line 119 of file diploma.bib.bib
+Warning--entry type for "ros" isn't style-file defined
+--line 129 of file diploma.bib.bib
+Warning--entry type for "wikiReactiveProg" isn't style-file defined
+--line 138 of file diploma.bib.bib
+Warning--empty journal in banyasad2000visual
+You've used 14 entries,
+            2964 wiz_defined-function locations,
+            735 strings with 7030 characters,
+and the built_in function-call counts, 3066 in all, are:
+= -- 427
+> -- 87
+< -- 7
++ -- 34
+- -- 20
+* -- 90
+:= -- 370
+add.period$ -- 50
+call.type$ -- 14
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 15
+duplicate$ -- 139
+empty$ -- 325
+format.name$ -- 20
+if$ -- 821
+int.to.chr$ -- 0
+int.to.str$ -- 14
+missing$ -- 0
+newline$ -- 82
+num.names$ -- 28
+pop$ -- 105
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 68
+stack$ -- 0
+substring$ -- 32
+swap$ -- 73
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 17
+width$ -- 16
+write$ -- 210
+(There were 8 warnings)

@@ -1,0 +1,90 @@
+\begin{thebibliography}{10}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\language\csname l@#1\endcsname\fi}
+\ifx\undefined\url\def\url#1{{\small #1}}\else\fi
+\ifx\undefined\BibUrl\def\BibUrl#1{\url{#1}}\else\fi
+\ifx\undefined\BibAnnote\long\def\BibAnnote#1{(#1)}\else\fi
+\ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi
+
+\bibitem{rollins2014beginning}
+\selectlanguageifdefined{russian}
+Rollins~Mark. Beginning Lego Mindstorms Ev3.
+\newblock Apress, 2014.{}
+
+\bibitem{nxt-g}
+\selectlanguageifdefined{russian}
+engineering~LEGO. Домашняя страница NXT-G.
+\newblock 2015. URL:  http://www.legoengineering.com/program/nxt-g/.{}
+
+\bibitem{robolab}
+\selectlanguageifdefined{russian}
+engineering~LEGO. Домашняя страница ROBOLAB.
+\newblock 2015. URL:  http://www.legoengineering.com/program/robolab/.{}
+
+\bibitem{trik}
+\selectlanguageifdefined{russian}
+TRIK~Проект. Всё о ТРИК.
+\newblock 2015. URL:  http:// trikset.com.{}
+
+\bibitem{sousa2012dataflow}
+\selectlanguageifdefined{russian}
+Sousa~Tiago~Boldt. Dataflow Programming Concept, Languages and Applications~//
+  Doctoral Symposium on Informatics Engineering.
+\newblock 2012.{}
+
+\bibitem{kelly2008domain}
+\selectlanguageifdefined{russian}
+Kelly~Steven, Tolvanen~Juha-Pekka. Domain-specific modeling: enabling full code
+  generation.
+\newblock John Wiley \& Sons, 2008.{}
+
+\bibitem{metaEdit}
+\selectlanguageifdefined{russian}
+MetaCase. Домашняя страница MetaEdit+.
+\newblock 2015. URL:  http://www.metacase.com/products.html.{}
+
+\bibitem{MVSTools}
+\selectlanguageifdefined{russian}
+MDSN. Modeling SDK for Visual Studio - Domain-Specific Languages.
+\newblock 2015. URL:  https://msdn.microsoft.com/en-us/library/bb126259/.{}
+
+\bibitem{терехов2009архитектура}
+\selectlanguageifdefined{russian}
+Архитектура среды визуального
+  моделирования QReal~/ АН~Терехов, ТА~Брыксин,
+  ЮВ~Литвинов {[и~др.]}~// Системное
+  программирование. Вып. 4: Сб. статей/Под
+  ред. АН Терехова, ДЮ Булычева.—СПб.: Изд-во
+  С.-Петерб. ун-та, 2009.—218 с.
+\newblock 2009.{}
+
+\bibitem{wikiReactiveProg}
+\selectlanguageifdefined{russian}
+Wikipedia. Reactive programming.
+\newblock Wikipedia, the free encyclopedia.
+\newblock 2015. URL:  {https://en.wikipedia.org/wiki/Reactive\_programming/}.{}
+
+\bibitem{ros}
+\selectlanguageifdefined{russian}
+ROS.org. Robot Operating System.
+\newblock 2015. URL:  http://wiki.ros.org/ru.{}
+
+\bibitem{travis2007labview}
+\selectlanguageifdefined{russian}
+Travis~Jeffrey, Kring~Jim. LabVIEW for everyone.
+\newblock Prentice-Hall, 2007.{}
+
+\bibitem{simpson2008visual}
+\selectlanguageifdefined{russian}
+Simpson~Jonathan, Jacobsen~Christian~L. Visual Process-Oriented Programming for
+  Robotics.~// CPA.
+\newblock 2008.
+\newblock {С.}~365--380.{}
+
+\bibitem{banyasad2000visual}
+\selectlanguageifdefined{russian}
+Banyasad~Omid. A Visual Programming Environment for Autonomous Robots.
+\newblock 2000.{}
+
+\end{thebibliography}

@@ -1,0 +1,23 @@
+\select@language {russian}
+\contentsline {section}{Введение}{4}{section*.2}
+\contentsline {section}{Постановка задачи}{6}{section*.3}
+\contentsline {section}{\numberline {1}Среды и языки программирования роботов}{7}{section.1}
+\contentsline {subsection}{\numberline {1.1}Учебные инструменты}{7}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Промышленные инструменты}{10}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Академические инструменты}{14}{subsubsection.1.2.1}
+\contentsline {subsection}{\numberline {1.3}Выводы}{14}{subsection.1.3}
+\contentsline {section}{\numberline {2}Архитектуры построения систем управления роботами}{16}{section.2}
+\contentsline {section}{\numberline {3}Реализация}{18}{section.3}
+\contentsline {subsection}{\numberline {3.1}Специализация языка}{18}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Блоки управления}{22}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Блоки рисования на экране}{24}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Блоки управления потоками}{25}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}Блоки взаимодействия}{26}{subsubsection.3.1.4}
+\contentsline {subsection}{\numberline {3.2}Реализация инструментария}{28}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Визуальный редактор}{28}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Интерпретатор}{29}{subsubsection.3.2.2}
+\contentsline {section}{\numberline {4}Апробация}{35}{section.4}
+\contentsline {subsection}{\numberline {4.1}ПД-регулятор для движения вдоль стены}{35}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Трехуровневая система управления}{37}{subsection.4.2}
+\contentsline {section}{Заключение}{41}{section*.36}
+\contentsline {section}{Список литературы}{43}{section*.38}
