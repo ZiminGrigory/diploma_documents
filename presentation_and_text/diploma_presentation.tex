@@ -11,7 +11,7 @@
 \setmonofont[Mapping=tex-text]{DejaVu Sans Mono}
 \usepackage{polyglossia}
 \setdefaultlanguage{russian}
-\setbeamertemplate{footline}[page number]{}
+\setbeamertemplate{footline}[frame number]
 \setbeamertemplate{navigation symbols}{}
 \usepackage{graphicx}
 \usepackage{listings}
@@ -19,13 +19,15 @@
 
 \begin{document}
 \title{Создание языка программирования роботов в терминах потоков данных с применением DSM-подхода}
-\author{Григорий Александрович Зимин\\{\footnotesize{Научный руководитель: д. ф.-м. н., профессор А.Н. Терехов \\Рецензент:?
+\thispagestyle{empty}
+\author{Григорий Александрович Зимин\\{\footnotesize{Научный руководитель: д. ф.-м. н., профессор А.Н. Терехов \\Рецензент: асс. каф. КСиПТ СПбПУ М.А. Беляев 
 }}}
 \institute{Санкт-Петербургский государственный университет\\Математико-механический факультет\\Кафедра Системного программирования}
 \date{Санкт-Петербург, \today}
 \frame{\titlepage}
 
 \begin{frame}\frametitle{Модели исполнения}
+\centering 
 \begin{columns}[T]
      \begin{column}[T]{5cm} 
      		\begin{figure}[p]
@@ -47,68 +49,38 @@
 \end{columns}
 \end{frame}
 
-
 \begin{frame}\frametitle{Управление роботом}
-	\includegraphics[scale = 0.65]{robotControl.png}
-\end{frame}
-	
-\begin{frame}\frametitle{Модели декомпозиции управления роботом}
-	\begin{columns}[T]
-     \begin{column}[T]{6cm} 
-     		\begin{figure}[p]
-    			\centering
-          		\includegraphics[scale = 0.3]{commonModel.png}
-    			\caption*{Модель до Р. Брукса}
-    			\label{fig:cf}
-			\end{figure}
-     \end{column}
-     \begin{column}[T]{6cm} 
-     		\begin{figure}[p]
-  				\begin{center}
-          		\includegraphics[scale = 0.3]{brooksModel.png}
-          		\end{center}
-          		\caption*{Модель Р. Брукса}
-    			\label{fig:df}
-			\end{figure}
-     \end{column}
-\end{columns}
+	\centering 	\includegraphics[scale = 0.65]{robotControl.png}
 \end{frame}
 
-\begin{frame}\frametitle{Архитектура системы управления роботом}
-     		\begin{figure}[p]
-				\includegraphics[scale = 0.25]{brooksArchitecture.png}
-          		\caption*{Архитектура Р. Брукса\footnote{Изображение взято из статьи автора.}}
-			\end{figure}
-\end{frame}
 
-\begin{frame}\frametitle{Исследования в области}
+
+\begin{frame}\frametitle{Инструменты для программирования роботов}
+\centering 
 \begin{itemize}
-    \item Proetzsch Martin, Luksch Tobias, Berns Karsten. The behaviour-based control architecture iB2C for complex robotic systems. 2007  
-    \item Jonathan Simpson, Christian L. Jacobsen. Visual Process-oriented Programming for Robotics. 2008
-    \item Diprose James P, MacDonald Bruce A, Hosking John G. Ruru: A spatial and interactive visual programming language for novice robot programming. 2011
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}\frametitle{Среды программирования роботов}
-\begin{itemize}
-	\item Основаны на модели потока данных
+	\item Индустриальные
 	\begin{itemize}
     	\item Microsoft Robotics Developer Studio (Microsoft)
     	\item LabVIEW (National Instruments)
-    	\item Simulink (MAthWorks)
+    	\item Simulink (MathWorks)
 	\end{itemize}
-	\item Основаны на модели потока управления
+	\item Учебные
 	\begin{itemize}
     	\item NXT-G (LEGO)
     	\item ROBOLAB (LEGO)
     	\item TRIK Studio (СПбГУ)
 	\end{itemize}
+	\item Академические
+	\begin{itemize}
+    	\item Builder + MCAGUI + MCABrowser (M. Proetzsch, T. Luksch, K. Berns) 2007
+    	\item POPed (J. Simpson, C.L. Jacobsen) 2008
+    	\item RuRu (J.P. Diprose, B.A. MacDonald, J. Hosking) 2011
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
-
 \begin{frame}\frametitle{Постановка задачи}
+
 \begin{itemize}
     \item Создать новый визуальный язык программирования в терминах потоков данных для программирования роботов
     \begin{itemize}
@@ -125,133 +97,91 @@
 \end{itemize}
 \end{frame}
 
+	
+%\begin{frame}\frametitle{Модели декомпозиции управления роботом}
+%	\begin{columns}[T]
+%     \begin{column}[T]{6cm} 
+%     		\begin{figure}[p]
+%    			\centering
+%          		\includegraphics[scale = 0.3]{commonModel.png}
+%    			\caption*{Модель до Р. Брукса}
+%    			\label{fig:cf}
+%			\end{figure}
+%     \end{column}
+%     \begin{column}[T]{6cm} 
+%     		\begin{figure}[p]
+%  				\begin{center}
+%          		\includegraphics[scale = 0.3]{brooksModel.png}
+%          		\end{center}
+%          		\caption*{Модель Р. Брукса}
+%    			\label{fig:df}
+%			\end{figure}
+%     \end{column}
+%\end{columns}
+%\end{frame}
+
+\begin{frame}\frametitle{Архитектура системы управления роботом}
+\centering 
+     		\begin{figure}[p]
+				\includegraphics[scale = 0.25]{brooksArchitecture.png}
+          		\caption*{Архитектура Р. Брукса\footnote{Изображение взято из статьи автора.}}
+			\end{figure}
+\end{frame}
+
 
 \begin{frame}\frametitle{Язык}
-\only<1>{  
+ 		\centering 
   \begin{figure}
     \includegraphics[scale = 0.6]{langElments}
     \caption*{Элементы языка: связь, блок.}
   \end{figure}
-}
 
-\only<2>{
-	{\bf Блоки \textit{действий} с роботом}
- \begin{columns}[T] 
-	
-	
-	\begin{column}[T]{3cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.6]{motors}
-   			\caption*{\scriptsize\textit{Моторы}} 
- 		\end{figure}
-     \end{column}
-     
-     \begin{column}[T]{3cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.6]{sensor}
-   			\caption*{\scriptsize\textit{Сенсор}} 
- 		\end{figure}
-     \end{column}  
-        
-     \begin{column}[T]{3cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.6]{gamepad}
-   			\caption*{\scriptsize\textit{Геймпад}} 
- 		\end{figure}
-     \end{column}
-  \end{columns}
-}
-
-\only<3>{
-	{\bf Блоки \textit{манипулирования потоками}}
- \begin{columns}[T] 
-	
-	\begin{column}[T]{2cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.6]{zip}
-   			\caption*{\scriptsize\textit{Запаковка}} 
- 		\end{figure}
-     \end{column}
-     
-     \begin{column}[T]{2cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.6]{unzip}
-   			\caption*{\scriptsize\textit{Распаковка}} 
- 		\end{figure}
-     \end{column}  
-        
-     \begin{column}[T]{3cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.6]{supress}
-   			\caption*{\scriptsize\textit{Подавление и замещение}} 
- 		\end{figure}
-     \end{column}
-  \end{columns}
-}
-
-\only<4>{
- {\bf \textit{Управляющие} блоки}
- \begin{columns}[T] 
-	
-	 \begin{column}[T]{3cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.6]{fork}
-   			\caption*{\scriptsize\textit{Распараллеливание}} 
- 		\end{figure}
-     \end{column}  
-     
-	\begin{column}[T]{3cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.6]{subprog}
-   			\caption*{\scriptsize\textit{Пользовательский блок}} 
- 		\end{figure}
-     \end{column}
-        
-     \begin{column}[T]{3cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.6]{outport}
-   			\caption*{\scriptsize\textit{Выходной порт}} 
- 		\end{figure}
-     \end{column}
-  \end{columns}
-}
-
-\only<5>{
-	{\bf \textit{Управляющие} блоки}  
-  \begin{columns}[T] 
-	\begin{column}[T]{2cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.4]{setx}
-   			\caption*{\scriptsize\textit{Глобальная переменная}} 
- 		\end{figure}
-     \end{column}
-     
-     \begin{column}[T]{2cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.4]{exit}
-   			\caption*{\scriptsize\textit{Завершение исполнения}} 
- 		\end{figure}
-     \end{column}  
-  \end{columns}
-  
- \begin{columns}[T] 	
-	\begin{column}[T]{2cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.4]{delayFilter}
-   			\caption*{\scriptsize\textit{Фильтр}} 
- 		\end{figure}
-     \end{column}
-     
-     \begin{column}[T]{2cm} 
-  		\begin{figure}
-    		\includegraphics[scale = 0.35]{func}
-   			\caption*{\scriptsize\textit{Текстовое программирование}} 
- 		\end{figure}
-     \end{column}  
-  \end{columns}
-
-}
 \end{frame}
+
+\begin{frame}\frametitle{Блоки \textit{действий} с роботом}
+\centering 
+	
+\begin{figure}
+    \includegraphics[scale = 0.5]{pic/msg}
+    \caption*{\textit{Моторы, Сенсор, Геймпад}}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Блоки \textit{манипулирования потоками}}
+\centering 
+	
+\begin{figure}
+    \includegraphics[scale = 0.4]{pic/szuz}
+    \caption*{\textit{Подавление и замещение, Запаковка, Распаковка}}
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}\frametitle{\textit{Управляющие} блоки}
+\centering 
+	
+\begin{figure}
+    \includegraphics[scale = 0.3]{pic/fso}
+    \caption*{\textit{Распараллеливание, Пользовательский блок, Выходной порт}}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{\textit{Управляющие} блоки}
+\centering 
+	
+\begin{figure}
+\centering 
+    \includegraphics[scale = 0.26]{pic/xeff}
+    \caption*{\textit{Глобальная переменная, Завершение исполнения} \\ \textit{Фильтр, Текстовое программирование}}
+\end{figure}
+
+\end{frame}
+
 
 
 \begin{frame}\frametitle{Реализация}
@@ -269,51 +199,77 @@
 \end{frame}
 
 
-\begin{frame}\frametitle{Апробация: ПД-регулятор для движения вдоль стены}\framesubtitle{Система управления}
-\begin{columns}[T]
-     \begin{column}[T]{5cm} 
-     		\begin{figure}[p]
-    			\centering
-          		\includegraphics[scale = 0.34]{alongCF.png}
-    			\caption*{Поток управления}
-    			\label{fig:cf}
-			\end{figure}
-     \end{column}
-     \begin{column}[T]{5cm} 
-     		\begin{figure}[p]
-  				\begin{center}
-          		\includegraphics[scale = 0.2]{alongBoxCode.png}
-          		\end{center}
-          		\caption*{Поток данных}
-    			\label{fig:df}
-			\end{figure}
-     \end{column}
-\end{columns}
+\begin{frame}\frametitle{Реализация}\framesubtitle{Архитектура интерпретатора}
+\centering
+          \includegraphics[scale=0.4]{pic/InterpreterArch.png}
 \end{frame}
 
 
-\begin{frame}\frametitle{Апробация: ПД-регулятор для движения вдоль стены}\framesubtitle{Интерпретация на модели}
-	\includegraphics[scale = 0.22]{working.png}
+\begin{frame}\frametitle{Реализация}\framesubtitle{Интерпретация}
+\begin{itemize}
+			\item Подготовка
+    		\item Исполнение
+		\end{itemize}
+
+\centering
+          \includegraphics[scale=0.4]{pic/Interaction.png}
+
 \end{frame}
 
 
-\begin{frame}\frametitle{Апробация: ПД-регулятор для движения вдоль стены}\framesubtitle{Интерпретация на роботе}
 
+%\begin{frame}\frametitle{Апробация: ПД-регулятор для движения вдоль стены}\framesubtitle{Система управления}
+%\centering 
+%\begin{columns}[T]
+%     \begin{column}[T]{5cm} 
+%     		\begin{figure}[p]
+%    			\centering
+%          		\includegraphics[scale = 0.34]{alongCF.png}
+%    			\caption*{Поток управления}
+%    			\label{fig:cf}
+%			\end{figure}
+%     \end{column}
+%     \begin{column}[T]{5cm} 
+%     		\begin{figure}[p]
+%  				\begin{center}
+%          		\includegraphics[scale = 0.2]{alongBoxCode.png}
+%          		\end{center}
+%          		\caption*{Поток данных}
+%    			\label{fig:df}
+%			\end{figure}
+%     \end{column}
+%\end{columns}
+%\end{frame}
+
+
+\begin{frame}\frametitle{Апробация: симуляция типовой задачи управления}
+		\centering 	\includegraphics[scale = 0.22]{working.png}
 \end{frame}
+
+
+%\begin{frame}\frametitle{Апробация: ПД-регулятор для движения вдоль стены}\framesubtitle{Интерпретация на роботе}
+%	\centering
+%	\includegraphics[scale = 0.2]{alongBoxReal.png}
+%\end{frame}
 
 
 \begin{frame}\frametitle{Апробация: двухуровневая система управления роботом}\framesubtitle{Операторский контроль}
-	\includegraphics[scale = 0.4]{pult.png}
+		\centering 	\includegraphics[scale = 0.4]{pult.png}
 \end{frame}
 
 
 \begin{frame}\frametitle{Апробация: двухуровневая система управления роботом}\framesubtitle{Избегание столкновений}
-\includegraphics[scale = 0.4]{collision.png}
+		\centering \includegraphics[scale = 0.4]{collision.png}
 \end{frame}
 
 
 \begin{frame}\frametitle{Апробация: двухуровневая система управления роботом}\framesubtitle{Управление на основе архитектуры категорий}
-	\includegraphics[scale = 0.4]{programScreen.png}
+		\centering \includegraphics[scale = 0.4]{programScreen.png}
+\end{frame}
+
+\begin{frame}\frametitle{Апробация: двухуровневая система управления роботом}\framesubtitle{Интерпретация на роботе}
+	\centering
+	\includegraphics[scale = 0.16]{simulationReal.png}
 \end{frame}
 
 
